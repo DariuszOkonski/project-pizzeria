@@ -55,10 +55,19 @@
   };
 
   class Product {
-    constructor() {
-      const thisProduct = this;
+    constructor(id, data) {
+      this.id = id;
+      this.data = data;
 
-      console.log('new Product: ', thisProduct);
+      this.renderInMenu();
+      console.log('new Product: ', this);
+    }
+
+    renderInMenu() {
+      const generatedHTML = templates.menuProduct(this.data);
+      this.element = utils.createDOMFromHTML(generatedHTML);
+      const menuContainer = document.querySelector(select.containerOf.menu);
+      menuContainer.appendChild(this.element);
     }
   }
 
