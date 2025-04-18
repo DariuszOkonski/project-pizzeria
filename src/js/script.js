@@ -60,7 +60,7 @@
       this.data = data;
 
       this.renderInMenu();
-      console.log('new Product: ', this);
+      this.initAccordion();
     }
 
     renderInMenu() {
@@ -68,6 +68,35 @@
       this.element = utils.createDOMFromHTML(generatedHTML);
       const menuContainer = document.querySelector(select.containerOf.menu);
       menuContainer.appendChild(this.element);
+    }
+
+    initAccordion() {
+      const thisProduct = this;
+
+      const clickableTrigger = thisProduct.element.querySelector(
+        select.menuProduct.clickable
+      );
+
+      clickableTrigger.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const activeProducts = document.querySelectorAll(
+          select.all.menuProducts
+        );
+
+        activeProducts.forEach((product) => {
+          if (
+            product.classList.contains(classNames.menuProduct.wrapperActive) &&
+            product !== thisProduct.element
+          ) {
+            product.classList.remove(classNames.menuProduct.wrapperActive);
+          }
+        });
+
+        thisProduct.element.classList.toggle(
+          classNames.menuProduct.wrapperActive
+        );
+      });
     }
   }
 
@@ -79,7 +108,6 @@
 
     initMenu: function () {
       const thisApp = this;
-      console.log('thisApp.data: ', thisApp.data);
 
       for (const productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
