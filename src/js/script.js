@@ -60,6 +60,7 @@
       this.data = data;
 
       this.renderInMenu();
+      this.getElements();
       this.initAccordion();
     }
 
@@ -68,6 +69,18 @@
       this.element = utils.createDOMFromHTML(generatedHTML);
       const menuContainer = document.querySelector(select.containerOf.menu);
       menuContainer.appendChild(this.element);
+    }
+
+    getElements() {
+      this.accordionTrigger = this.element.querySelector(
+        select.menuProduct.clickable
+      );
+      this.form = this.element.querySelector(select.menuProduct.form);
+      this.formInputs = this.form.querySelectorAll(select.all.formInputs);
+      this.cartButton = this.element.querySelector(
+        select.menuProduct.cartButton
+      );
+      this.priceElem = this.element.querySelector(select.menuProduct.priceElem);
     }
 
     initAccordion() {
