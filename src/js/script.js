@@ -82,6 +82,7 @@
     constructor(id, data) {
       this.id = id;
       this.data = data;
+      this.dom = {};
 
       this.renderInMenu();
       this.getElements();
@@ -89,28 +90,31 @@
       this.initOrderForm();
       this.initAmountWidget();
       this.processOrder();
+
+      console.log(this)
     }
 
     renderInMenu() {
       const generatedHTML = templates.menuProduct(this.data);
-      this.element = utils.createDOMFromHTML(generatedHTML);
+      this.dom.element = utils.createDOMFromHTML(generatedHTML);
       const menuContainer = document.querySelector(select.containerOf.menu);
-      menuContainer.appendChild(this.element);
+      menuContainer.appendChild(this.dom.element);
     }
 
     getElements() {
-      this.accordionTrigger = this.element.querySelector(
+      this.dom.accordionTrigger = this.dom.element.querySelector(
         select.menuProduct.clickable
       );
-      this.form = this.element.querySelector(select.menuProduct.form);
-      this.formInputs = this.form.querySelectorAll(select.all.formInputs);
-      this.cartButton = this.element.querySelector(
+
+      this.dom.form = this.dom.element.querySelector(select.menuProduct.form);
+      this.dom.formInputs = this.dom.form.querySelectorAll(select.all.formInputs);
+      this.dom.cartButton = this.dom.element.querySelector(
         select.menuProduct.cartButton
       );
-      this.priceElem = this.element.querySelector(select.menuProduct.priceElem);
+      this.dom.priceElem = this.dom.element.querySelector(select.menuProduct.priceElem);
 
       this.imageWrapper = select.menuProduct.imageWrapper;
-      this.amountWidgetElem = this.element.querySelector(
+      this.dom.amountWidgetElem = this.dom.element.querySelector(
         select.menuProduct.amountWidget
       );
     }
@@ -118,7 +122,7 @@
     initAccordion() {
       const thisProduct = this;
 
-      thisProduct.accordionTrigger.addEventListener('click', function (event) {
+      thisProduct.dom.accordionTrigger.addEventListener('click', function (event) {
         event.preventDefault();
 
         const activeProducts = document.querySelectorAll(
@@ -128,13 +132,13 @@
         activeProducts.forEach((product) => {
           if (
             product.classList.contains(classNames.menuProduct.wrapperActive) &&
-            product !== thisProduct.element
+            product !== thisProduct.dom.element
           ) {
             product.classList.remove(classNames.menuProduct.wrapperActive);
           }
         });
 
-        thisProduct.element.classList.toggle(
+        thisProduct.dom.element.classList.toggle(
           classNames.menuProduct.wrapperActive
         );
       });
@@ -143,18 +147,18 @@
     initOrderForm() {
       const thisProduct = this;
 
-      thisProduct.form.addEventListener('submit', function (event) {
+      thisProduct.dom.form.addEventListener('submit', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
 
-      for (let input of thisProduct.formInputs) {
+      for (let input of thisProduct.dom.formInputs) {
         input.addEventListener('change', function () {
           thisProduct.processOrder();
         });
       }
 
-      thisProduct.cartButton.addEventListener('click', function (event) {
+      thisProduct.dom.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
@@ -162,16 +166,16 @@
 
     initAmountWidget() {
       const thisProduct = this;
-      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidget = new AmountWidget(thisProduct.dom.amountWidgetElem);
 
-      thisProduct.amountWidgetElem.addEventListener('updated', function () {
+      thisProduct.dom.amountWidgetElem.addEventListener('updated', function () {
         thisProduct.processOrder();
       });
     }
 
     processOrder() {
       const thisProduct = this;
-      const formData = utils.serializeFormToObject(thisProduct.form);
+      const formData = utils.serializeFormToObject(thisProduct.dom.form);
 
       let price = thisProduct.data.price;
 
@@ -215,7 +219,7 @@
       }
 
       price *= thisProduct.amountWidget.value;
-      thisProduct.priceElem.innerHTML = price;
+      thisProduct.dom.priceElem.innerHTML = price;
     }
   }
 
