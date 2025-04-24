@@ -200,7 +200,11 @@
       const thisWidget = this;
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.input.value);
+      if(thisWidget.input.value) {
+        thisWidget.setValue(thisWidget.input.value);
+      } else {
+        thisWidget.setValue(settings.amountWidget.defaultValue)
+      }
       thisWidget.initActions();
     }
 
@@ -224,7 +228,6 @@
 
       const newValue = parseInt(value);
 
-      // TODO: Add validation
       if (
         thisWidget.value !== newValue &&
         !isNaN(newValue) &&
