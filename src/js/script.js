@@ -233,6 +233,7 @@
         }
       }
 
+      thisProduct.priceSingle = price;
       price *= thisProduct.amountWidget.value;
       thisProduct.dom.priceElem.innerHTML = price;
     }
@@ -240,7 +241,51 @@
     addToCart() {
       const thisProduct = this;
 
-      app.cart.add(thisProduct);
+      app.cart.add(thisProduct.prepareCartProduct());
+    }
+
+    prepareCartProduct() {
+      const thisProduct = this;
+
+      const productSummary = {
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        price: thisProduct.priceSingle * thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        params: thisProduct.prepareCartProductParams(),
+      };
+
+      return productSummary;
+    }
+
+    prepareCartProductParams() {
+      const thisProduct = this;
+    
+      const formData = utils.serializeFormToObject(thisProduct.dom.form);
+      const params = {};
+    
+      for(let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];
+    
+        params[paramId] = {
+          label: param.label,
+          options: {}
+        }
+    
+        const options = {}
+        for(let optionId in param.options) {
+          const option = param.options[optionId];
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+
+          if(optionSelected) {
+            options[optionId] = option.label
+            params[paramId].options = options
+          }
+        }
+      }
+    
+      return params;
     }
   }
 
