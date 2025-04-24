@@ -66,7 +66,7 @@
       this.initAmountWidget();
       this.processOrder();
 
-      console.log('Product: ', this);
+      // console.log('Product: ', this);
     }
 
     renderInMenu() {
@@ -199,6 +199,8 @@
       // console.log('AmountWidget: ', thisWidget);
       // console.log('constructor arguments: ', element);
       thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
     }
 
     getElements(element) {
@@ -214,6 +216,37 @@
       thisWidget.linkIncrease = thisWidget.element.querySelector(
         select.widgets.amount.linkIncrease
       );
+    }
+
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      // TODO: Add validation
+      if (thisWidget.value !== newValue && !isNaN(newValue)) {
+        thisWidget.value = newValue;
+      }
+
+      thisWidget.input.value = thisWidget.value;
+    }
+
+    initActions() {
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function () {
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function (e) {
+        e.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function (e) {
+        e.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
     }
   }
 
