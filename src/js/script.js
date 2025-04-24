@@ -63,7 +63,10 @@
       this.getElements();
       this.initAccordion();
       this.initOrderForm();
+      this.initAmountWidget();
       this.processOrder();
+
+      console.log('Product: ', this);
     }
 
     renderInMenu() {
@@ -85,6 +88,9 @@
       this.priceElem = this.element.querySelector(select.menuProduct.priceElem);
 
       this.imageWrapper = select.menuProduct.imageWrapper;
+      this.amountWidgetElem = this.element.querySelector(
+        select.menuProduct.amountWidget
+      );
     }
 
     initAccordion() {
@@ -130,6 +136,11 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
+    }
+
+    initAmountWidget() {
+      const thisProduct = this;
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
     }
 
     processOrder() {
@@ -181,6 +192,31 @@
     }
   }
 
+  class AmountWidget {
+    constructor(element) {
+      const thisWidget = this;
+
+      // console.log('AmountWidget: ', thisWidget);
+      // console.log('constructor arguments: ', element);
+      thisWidget.getElements(element);
+    }
+
+    getElements(element) {
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(
+        select.widgets.amount.input
+      );
+      thisWidget.linkDecrease = thisWidget.element.querySelector(
+        select.widgets.amount.linkDecrease
+      );
+      thisWidget.linkIncrease = thisWidget.element.querySelector(
+        select.widgets.amount.linkIncrease
+      );
+    }
+  }
+
   const app = {
     initData: function () {
       const thisApp = this;
@@ -197,11 +233,11 @@
 
     init: function () {
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      // console.log('*** App starting ***');
+      // console.log('thisApp:', thisApp);
+      // console.log('classNames:', classNames);
+      // console.log('settings:', settings);
+      // console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
