@@ -440,25 +440,9 @@
     remove(cartProduct) {
       const thisCart = this;
 
-
-      // thisCart.dom.productList.removeChild(cartProduct.dom.wrapper);
-      // thisCart.products = thisCart.products.filter(product => product.id !== cartProduct.id)
-      // thisCart.update();
-
-      
-      
-
-      console.group('Remove Method with event');
-      console.log('cartProduct: ', cartProduct);
-      console.log('thisCart: ', thisCart)
-      console.log('-------------------------------------')
-      console.log('thisCart.dom.productList: ', thisCart.dom.productList)
-      console.log('cartProduct.dom.wrapper', cartProduct.dom.wrapper)
-      console.groupEnd();
-
-
-
-      // thisCart.update();
+      thisCart.products = thisCart.products.filter(product => product.id !== cartProduct.id);
+      thisCart.dom.productList.removeChild(cartProduct.dom.wrapper);
+      thisCart.update();
     }
   }
 
