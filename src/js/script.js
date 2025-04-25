@@ -357,7 +357,8 @@
     announce() {
       const thisWidget = this;
 
-      const event = new Event('updated');
+      // const event = new Event('updated');
+      const event = new CustomEvent('updated', { bubbles: true })
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -395,6 +396,10 @@
           classNames.cart.wrapperActive
         );
       });
+
+      thisCart.dom.productList.addEventListener('updated', function() {
+        thisCart.update();
+      })
     }
 
     add(menuProduct) {
@@ -420,14 +425,6 @@
       }
 
       thisCart.totalPrice = subtotalPrice > 0 ? subtotalPrice + deliveryFee :  0;
-
-      // console.group('update');
-      // console.log('totalNumber: ', totalNumber);
-      // console.log('subtotalPrice: ', subtotalPrice);
-      // console.log('thisCart.totalPrice: ', thisCart.totalPrice)
-      // console.log('------------------------')
-      // console.log('thisCart: ', thisCart);
-      // console.groupEnd();
 
       thisCart.dom.deliveryFee.textContent = subtotalPrice > 0 ? deliveryFee : 0;
       thisCart.dom.subtotalPrice.textContent = subtotalPrice;
@@ -471,6 +468,8 @@
         thisCartProduct.price = price;
         thisCartProduct.amount = thisCartProduct.amountWidget.value
         thisCartProduct.dom.price.textContent = price;
+
+
       })
     }
   }
