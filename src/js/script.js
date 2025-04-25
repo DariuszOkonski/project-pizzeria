@@ -397,10 +397,9 @@
       const generatedDOM = utils.createDOMFromHTML(generatedHTML)
       thisCart.dom.productList.appendChild(generatedDOM)
 
-      thisCart.products.push(menuProduct);
-      // console.log('thisCart.products: ', thisCart.products)
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
 
-      console.log('menuProduct: ', menuProduct);
+      console.log('thisCart: ', thisCart)
     }
   }
 
@@ -414,14 +413,18 @@
       thisCartProduct.price = menuProduct.price;
       thisCartProduct.priceSingle = menuProduct.priceSingle;
       thisCartProduct.params = menuProduct.params;
+      thisCartProduct.dom = {};
 
       this.getElements(element);
-
-      console.log('thisCartProduct: ', thisCartProduct)
     }
 
     getElements(element) {
-      console.log('CartProduct element: ', element);
+      const thisCartProduct = this;
+      thisCartProduct.dom.wrapper = element;
+      thisCartProduct.dom.amountWidget = element.querySelector(select.cartProduct.amountWidget);
+      thisCartProduct.dom.price = element.querySelector(select.cartProduct.price);
+      thisCartProduct.dom.edit = element.querySelector(select.cartProduct.edit);
+      thisCartProduct.dom.remove = element.querySelector(select.cartProduct.remove);
     }
   }
 
