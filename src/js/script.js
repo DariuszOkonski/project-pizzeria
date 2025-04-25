@@ -435,7 +435,15 @@
         thisCart.sendOrder();
       });
 
-      console.log(thisCart);
+      thisCart.dom.phone.addEventListener('change', function (event) {
+        event.preventDefault();
+        thisCart.phone = event.target.value;
+      });
+
+      thisCart.dom.address.addEventListener('change', function (event) {
+        event.preventDefault();
+        thisCart.address = event.target.value;
+      });
     }
 
     sendOrder() {
@@ -443,8 +451,8 @@
       const url = settings.db.url + '/' + settings.db.orders;
 
       const payload = {
-        address: 'my address here',
-        phone: 'my phone here',
+        address: thisCart.address,
+        phone: thisCart.phone,
         totalPrice: thisCart.totalPrice,
         subtotalPrice: thisCart.subtotalPrice,
         totalNumber: thisCart.totalNumber,
