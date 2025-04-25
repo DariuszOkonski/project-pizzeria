@@ -398,6 +398,8 @@
       thisCart.dom.productList.appendChild(generatedDOM)
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+
+      console.log('thisCart: ', thisCart)
     }
   }
 
@@ -432,6 +434,7 @@
       thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
         const price = thisCartProduct.amountWidget.value * thisCartProduct.priceSingle;
         thisCartProduct.price = price;
+        thisCartProduct.amount = thisCartProduct.amountWidget.value
         thisCartProduct.dom.price.textContent = price;
       })
     }
