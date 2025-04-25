@@ -461,7 +461,6 @@
       };
 
       for (const prod of thisCart.products) {
-        // console.log(prod.getData());
         payload.products.push(prod.getData());
       }
 
