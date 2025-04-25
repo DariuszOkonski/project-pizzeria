@@ -396,6 +396,32 @@
       const generatedHTML = templates.cartProduct(menuProduct);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML)
       thisCart.dom.productList.appendChild(generatedDOM)
+
+      thisCart.products.push(menuProduct);
+      // console.log('thisCart.products: ', thisCart.products)
+
+      console.log('menuProduct: ', menuProduct);
+    }
+  }
+
+  class CartProduct {
+    constructor(menuProduct, element) {
+      const thisCartProduct = this;
+
+      thisCartProduct.id = menuProduct.id;
+      thisCartProduct.amount = menuProduct.amount;
+      thisCartProduct.name = menuProduct.name;
+      thisCartProduct.price = menuProduct.price;
+      thisCartProduct.priceSingle = menuProduct.priceSingle;
+      thisCartProduct.params = menuProduct.params;
+
+      this.getElements(element);
+
+      console.log('thisCartProduct: ', thisCartProduct)
+    }
+
+    getElements(element) {
+      console.log('CartProduct element: ', element);
     }
   }
 
