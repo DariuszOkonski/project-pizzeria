@@ -517,7 +517,8 @@
   const app = {
     initData: function () {
       const thisApp = this;
-      thisApp.data = dataSource;
+      // thisApp.data = dataSource;
+      thisApp.data = {}
     },
 
     initMenu: function () {
