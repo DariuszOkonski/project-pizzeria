@@ -39,6 +39,7 @@
       totalPrice:
         '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
       subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
+      priceSum: '.cart__order-total .cart__order-price-sum strong',
       deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
       form: '.cart__order',
       formSubmit: '.cart__order [type="submit"]',
@@ -377,7 +378,13 @@
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper;
-      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList)
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+
+      thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
+      thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelector(select.cart.totalPrice);
+      thisCart.dom.priceSum = thisCart.dom.wrapper.querySelector(select.cart.priceSum);
+      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
     }
 
     initActions() {
@@ -414,13 +421,20 @@
 
       thisCart.totalPrice = subtotalPrice > 0 ? subtotalPrice + deliveryFee :  0;
 
-      console.group('update');
-      console.log('totalNumber: ', totalNumber);
-      console.log('subtotalPrice: ', subtotalPrice);
-      console.log('thisCart.totalPrice: ', thisCart.totalPrice)
-      console.log('------------------------')
-      console.log('thisCart: ', thisCart);
-      console.groupEnd();
+      // console.group('update');
+      // console.log('totalNumber: ', totalNumber);
+      // console.log('subtotalPrice: ', subtotalPrice);
+      // console.log('thisCart.totalPrice: ', thisCart.totalPrice)
+      // console.log('------------------------')
+      // console.log('thisCart: ', thisCart);
+      // console.groupEnd();
+
+      thisCart.dom.deliveryFee.textContent = subtotalPrice > 0 ? deliveryFee : 0;
+      thisCart.dom.subtotalPrice.textContent = subtotalPrice;
+      thisCart.dom.totalPrice.textContent = thisCart.totalPrice;
+      thisCart.dom.priceSum.textContent = thisCart.totalPrice;
+      thisCart.dom.totalNumber.textContent = totalNumber;
+
     }
   }
 
