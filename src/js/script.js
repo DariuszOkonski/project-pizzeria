@@ -398,8 +398,6 @@
       thisCart.dom.productList.appendChild(generatedDOM)
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-
-      console.log('thisCart: ', thisCart)
     }
   }
 
@@ -430,11 +428,11 @@
 
     initAmountWidget() {
       const thisCartProduct = this;
-      console.log('CartProduct initAmountWidget: ', thisCartProduct)
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget)
       thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
-        console.log('CALL UPDATE FROM CartProduct')
-        console.log('thisCartProduct: ', thisCartProduct)
+        const price = thisCartProduct.amountWidget.value * thisCartProduct.priceSingle;
+        thisCartProduct.price = price;
+        thisCartProduct.dom.price.textContent = price;
       })
     }
   }
@@ -462,11 +460,6 @@
 
     init: function () {
       const thisApp = this;
-      // console.log('*** App starting ***');
-      // console.log('thisApp:', thisApp);
-      // console.log('classNames:', classNames);
-      // console.log('settings:', settings);
-      // console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
