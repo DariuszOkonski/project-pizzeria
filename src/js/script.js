@@ -460,6 +460,11 @@
         products: [],
       };
 
+      for (const prod of thisCart.products) {
+        // console.log(prod.getData());
+        payload.products.push(prod.getData());
+      }
+
       console.log(thisCart);
       console.log(payload);
     }
@@ -525,6 +530,13 @@
       this.getElements(element);
       this.initAmountWidget();
       this.initActions();
+    }
+
+    getData() {
+      const thisCartProduct = this;
+      const { id, amount, price, priceSingle, name, params } = thisCartProduct;
+
+      return { id, amount, price, priceSingle, name, params };
     }
 
     getElements(element) {
