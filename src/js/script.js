@@ -416,10 +416,12 @@
     initActions() {
       const thisCart = this;
 
-      thisCart.dom.toggleTrigger.addEventListener('click', function () {
-        thisCart.dom.toggleTrigger.classList.toggle(
-          classNames.cart.wrapperActive
-        );
+      thisCart.dom.toggleTrigger.addEventListener('click', function (event) {
+        if(event.target.name !== 'phone' && event.target.name !== 'address') {
+          thisCart.dom.toggleTrigger.classList.toggle(
+            classNames.cart.wrapperActive
+          );
+        }
       });
 
       thisCart.dom.productList.addEventListener('updated', function () {
