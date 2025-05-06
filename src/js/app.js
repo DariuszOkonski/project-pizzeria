@@ -81,9 +81,6 @@ const app = {
 
     const bookingElem = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingElem);
-
-    // console.log(bookingElem);
-    // console.log(thisApp);
   },
 
   activatePage: function (pageId) {
