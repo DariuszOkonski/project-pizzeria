@@ -1,3 +1,4 @@
+import Booking from './components/Booking.js';
 import Cart from './components/Cart.js';
 import Product from './components/Product.js';
 import { classNames, select, settings } from './settings.js';
@@ -75,6 +76,16 @@ const app = {
     });
   },
 
+  initBooking: function () {
+    const thisApp = this;
+
+    const bookingElem = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(bookingElem);
+
+    // console.log(bookingElem);
+    // console.log(thisApp);
+  },
+
   activatePage: function (pageId) {
     const thisApp = this;
 
@@ -97,6 +108,7 @@ const app = {
 
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 
