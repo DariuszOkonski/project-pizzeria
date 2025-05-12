@@ -197,11 +197,8 @@ class Booking {
 
     // console.log('event.target: ', event.target);
     // console.log('thisBooking: ', thisBooking);
-    if (
-      event.target.classList.contains(classNames.booking.selected) &&
-      dataTable === thisBooking.selectedTable
-    ) {
-      alert('This table is already booked!!!');
+    if (event.target.classList.contains(classNames.booking.tableBooked)) {
+      alert('Table unavailable!!!');
     }
 
     if (
