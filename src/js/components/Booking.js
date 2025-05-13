@@ -217,6 +217,7 @@ class Booking {
     for (let item of thisBooking.dom.tables) {
       if (item.classList.contains(classNames.booking.selected)) {
         item.classList.remove(classNames.booking.selected);
+        thisBooking.selectedTable = null;
       }
     }
   }
@@ -226,16 +227,23 @@ class Booking {
 
     thisBooking.peopleWidget = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.dom.peopleAmount.addEventListener('click', function () {
-      console.log('clicking peopleAmount');
+      thisBooking.clearSelectedTables();
     });
 
     thisBooking.hoursWidget = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.dom.hoursAmount.addEventListener('click', function () {
-      console.log('clicking hoursAmount');
+      thisBooking.clearSelectedTables();
     });
 
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
+    thisBooking.dom.datePicker.addEventListener('change', function () {
+      thisBooking.clearSelectedTables();
+    });
+
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
+    thisBooking.hourPicker.dom.input.addEventListener('input', function () {
+      thisBooking.clearSelectedTables();
+    });
 
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
@@ -244,6 +252,8 @@ class Booking {
     thisBooking.dom.tablesContainer.addEventListener('click', (event) =>
       thisBooking.initTables(event)
     );
+
+    console.log(thisBooking);
   }
 }
 
