@@ -9,6 +9,9 @@ class Booking {
     const thisBooking = this;
 
     thisBooking.selectedTable = null;
+    thisBooking.phone = '';
+    thisBooking.address = '';
+
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
@@ -185,6 +188,17 @@ class Booking {
     thisBooking.dom.tablesContainer = thisBooking.dom.wrapper.querySelector(
       select.booking.tablesContainer
     );
+
+    thisBooking.dom.buttonBookTable = thisBooking.dom.wrapper.querySelector(
+      select.booking.buttonBookTable
+    );
+
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(
+      select.booking.phone
+    );
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(
+      select.booking.address
+    );
   }
 
   initTables(event) {
@@ -214,6 +228,31 @@ class Booking {
         thisBooking.selectedTable = null;
       }
     }
+  }
+
+  sendBooking(event) {
+    event.preventDefault();
+    const thisBooking = this;
+
+    const bookingObject = {
+      date: thisBooking.datePicker.correctValue,
+      hour: thisBooking.hourPicker.correctValue,
+      table: thisBooking.selectedTable,
+      duration: thisBooking.hoursWidget.correctValue,
+      ppl: thisBooking.peopleWidget.correctValue,
+      starters: [],
+      phone: thisBooking.phone,
+      address: thisBooking.address,
+    };
+
+    if (!bookingObject.phone || !bookingObject.address || !bookingObject.date) {
+      return alert('Fill all fields!!!');
+    }
+
+    console.group('send booking: ');
+    console.log('thisBooking: ', thisBooking);
+    console.log('bookingObject: ', bookingObject);
+    console.groupEnd();
   }
 
   initWidgets() {
@@ -246,6 +285,18 @@ class Booking {
     thisBooking.dom.tablesContainer.addEventListener('click', (event) =>
       thisBooking.initTables(event)
     );
+
+    thisBooking.dom.phone.addEventListener('input', (event) => {
+      thisBooking.phone = event.target.value;
+    });
+
+    thisBooking.dom.address.addEventListener('input', (event) => {
+      thisBooking.address = event.target.value;
+    });
+
+    thisBooking.dom.buttonBookTable.addEventListener('click', (event) => {
+      thisBooking.sendBooking(event);
+    });
   }
 }
 
