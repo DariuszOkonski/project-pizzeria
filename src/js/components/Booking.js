@@ -238,8 +238,9 @@ class Booking {
   sendBooking(event) {
     event.preventDefault();
     const thisBooking = this;
+    const URL = `${settings.db.url}/${settings.db.bookings}`;
 
-    const bookingObject = {
+    const payload = {
       date: thisBooking.datePicker.correctValue,
       hour: thisBooking.hourPicker.correctValue,
       table: thisBooking.selectedTable,
@@ -250,19 +251,26 @@ class Booking {
       address: thisBooking.address,
     };
 
-    if (
-      !bookingObject.phone ||
-      !bookingObject.address ||
-      !bookingObject.table ||
-      !bookingObject.date
-    ) {
+    if (!payload.phone || !payload.address || !payload.table || !payload.date) {
       return alert('Fill all fields!!!');
     }
 
-    console.group('send booking: ');
-    console.log('thisBooking: ', thisBooking);
-    console.log('bookingObject: ', bookingObject);
-    console.groupEnd();
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(URL, options)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (parsedResponse) {
+        const { date, hour, duration, table } = parsedResponse;
+        thisBooking.makeBooked(date, hour, duration, table);
+      });
   }
 
   initWidgets() {
