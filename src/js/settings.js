@@ -47,6 +47,7 @@ export const select = {
     buttonBookTable: '.order-confirmation button',
     phone: '.order-confirmation input[name="phone"]',
     address: '.order-confirmation input[name="address"]',
+    startersContainer: '#starters-container input[type="checkbox"]',
   },
   nav: {
     links: '.main-nav a',

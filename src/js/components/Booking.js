@@ -11,6 +11,7 @@ class Booking {
     thisBooking.selectedTable = null;
     thisBooking.phone = '';
     thisBooking.address = '';
+    thisBooking.starters = [];
 
     thisBooking.render(element);
     thisBooking.initWidgets();
@@ -199,6 +200,10 @@ class Booking {
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(
       select.booking.address
     );
+
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(
+      select.booking.startersContainer
+    );
   }
 
   initTables(event) {
@@ -240,7 +245,7 @@ class Booking {
       table: thisBooking.selectedTable,
       duration: thisBooking.hoursWidget.correctValue,
       ppl: thisBooking.peopleWidget.correctValue,
-      starters: [],
+      starters: thisBooking.starters,
       phone: thisBooking.phone,
       address: thisBooking.address,
     };
@@ -297,6 +302,20 @@ class Booking {
 
     thisBooking.dom.address.addEventListener('input', (event) => {
       thisBooking.address = event.target.value;
+    });
+
+    thisBooking.dom.starters.forEach((element) => {
+      element.addEventListener('click', (event) => {
+        const starter = event.target.value;
+
+        if (event.target.checked) {
+          thisBooking.starters.push(starter);
+        } else {
+          thisBooking.starters = thisBooking.starters.filter(
+            (item) => item !== starter
+          );
+        }
+      });
     });
 
     thisBooking.dom.buttonBookTable.addEventListener('click', (event) => {
