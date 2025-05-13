@@ -12,8 +12,6 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
-
-    // console.log(thisBooking);
   }
 
   getData() {
@@ -195,21 +193,17 @@ class Booking {
       event.target.getAttribute(settings.booking.tableIdAttribute)
     );
 
-    // console.log('event.target: ', event.target);
-    // console.log('thisBooking: ', thisBooking);
     if (event.target.classList.contains(classNames.booking.tableBooked)) {
-      alert('Table unavailable!!!');
+      return alert('Table unavailable!!!');
     }
 
-    if (
-      event.target.classList.contains(classNames.booking.table) &&
-      !event.target.classList.contains(classNames.booking.tableBooked)
-    ) {
+    if (dataTable !== thisBooking.selectedTable) {
       thisBooking.clearSelectedTables();
-      event.target.classList.add(classNames.booking.selected);
-
-      thisBooking.selectedTable = dataTable;
+      thisBooking.selectedTable = null;
     }
+
+    event.target.classList.toggle(classNames.booking.selected);
+    thisBooking.selectedTable = dataTable;
   }
 
   clearSelectedTables() {
@@ -252,8 +246,6 @@ class Booking {
     thisBooking.dom.tablesContainer.addEventListener('click', (event) =>
       thisBooking.initTables(event)
     );
-
-    console.log(thisBooking);
   }
 }
 
