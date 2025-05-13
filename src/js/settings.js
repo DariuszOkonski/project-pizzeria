@@ -3,14 +3,14 @@ export const select = {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product',
     bookingWidget: '#template-booking-widget',
-    homePage: '#template-home'
+    homePage: '#template-home',
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
-    home: '.home-wrapper'
+    home: '.home-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -50,6 +50,9 @@ export const select = {
     phone: '.order-confirmation input[name="phone"]',
     address: '.order-confirmation input[name="address"]',
     startersContainer: '#starters-container input[type="checkbox"]',
+  },
+  home: {
+    carousel: '.main-carousel',
   },
   nav: {
     links: '.main-nav a',
@@ -142,5 +145,5 @@ export const templates = {
   ),
   homePage: Handlebars.compile(
     document.querySelector(select.templateOf.homePage).innerHTML
-  )
+  ),
 };

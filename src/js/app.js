@@ -84,9 +84,9 @@ const app = {
     thisApp.booking = new Booking(bookingElem);
   },
 
-  initHome: function() {
+  initHome: function () {
     const thisApp = this;
-    const homeElem = document.querySelector(select.containerOf.home)
+    const homeElem = document.querySelector(select.containerOf.home);
     thisApp.home = new Home(homeElem);
   },
 

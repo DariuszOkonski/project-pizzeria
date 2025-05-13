@@ -7,6 +7,10 @@
     <title>Pizzeria</title>
     <link
       rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
     />
     <link rel="stylesheet" href="vendor/range-slider.min.css" />
@@ -114,6 +118,23 @@
       <div class='open'>
         <h2 class='open__header'>Opening hours</h2>
         <p class='open__time'>Mon-sun, 12pm-11pm</p>
+      </div>
+
+      <div class='carousel-container'>
+        <div class='main-carousel'>
+          <div class='carousel-cell'>
+            <div class='carousel-single-item'>screen 1</div>
+          </div>
+          <div class='carousel-cell'>
+            <div class='carousel-single-item'>screen 2</div>
+          </div>
+          <div class='carousel-cell'>
+            <div class='carousel-single-item'>screen 3</div>
+          </div>
+          <div class='carousel-cell'>
+            <div class='carousel-single-item'>screen 4</div>
+          </div>
+        </div>
       </div>
     </script>
 
@@ -318,6 +339,7 @@
       </div>
     </script>
 
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="vendor/range-slider.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
