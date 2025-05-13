@@ -245,7 +245,12 @@ class Booking {
       address: thisBooking.address,
     };
 
-    if (!bookingObject.phone || !bookingObject.address || !bookingObject.date) {
+    if (
+      !bookingObject.phone ||
+      !bookingObject.address ||
+      !bookingObject.table ||
+      !bookingObject.date
+    ) {
       return alert('Fill all fields!!!');
     }
 
