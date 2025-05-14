@@ -137,7 +137,7 @@
 .gallery {
   width: 100%;
   height: 400px;
-  margin-top: 0.5rem;
+  margin-top: 4rem;
   box-sizing: border-box;
   overflow: hidden;
 
@@ -165,9 +165,9 @@
   }
 
   &__img:hover &__bg {
-    opacity: 0.5;
+    opacity: 1;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   &__bg {
@@ -177,7 +177,20 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: $color-dark;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: $color-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+
+    i {
+      margin: 0.2rem;
+    }
+
+    .fa-heart {
+      color: $color-danger;
+    }
   }
 }
 
