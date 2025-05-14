@@ -1,5 +1,5 @@
-import { select, templates } from '../settings.js';
-// import Flickity from 'flickity';
+/* eslint-disable */
+import { templates } from '../settings.js';
 
 class Home {
   constructor(element) {
@@ -19,16 +19,8 @@ class Home {
   }
 
   initPlugins() {
-    console.log('initPlugins');
-    // const carouselContainer = document.querySelector(select.home.carousel);
-
-    // const flickity = new Flickity(carouselContainer, {
-    //   cellAlign: 'left',
-    //   contain: true,
-    // });
-
-    var elem = document.querySelector('.main-carousel');
-    var flkty = new Flickity(elem, {
+    const elem = document.querySelector('.main-carousel');
+    new Flickity(elem, {
       cellAlign: 'left',
       contain: true,
       autoPlay: 1500,
