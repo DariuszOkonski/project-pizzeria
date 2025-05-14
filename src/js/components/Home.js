@@ -1,12 +1,33 @@
 /* eslint-disable */
-import { templates } from '../settings.js';
+import { templates, select } from '../settings.js';
 
 class Home {
-  constructor(element) {
+  constructor(thisApp, element) {
     const thisHome = this;
 
     thisHome.render(element);
     thisHome.initPlugins();
+
+    thisHome.initNavigation(thisApp);
+  }
+
+  initNavigation(thisApp) {
+    const featuresLinks = document.querySelectorAll(select.home.featuresLinks);
+    const localNavLinks = [...thisApp.navLinks, ...featuresLinks];
+    thisApp.navLinks = localNavLinks;
+
+    for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function (event) {
+        const clickedElement = this;
+        event.preventDefault();
+
+        const id = clickedElement.getAttribute('href').replace('#', '');
+
+        thisApp.activatePage(id);
+
+        window.location.hash = '#/' + id;
+      });
+    }
   }
 
   render(element) {
