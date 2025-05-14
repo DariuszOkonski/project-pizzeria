@@ -53,6 +53,7 @@ export const select = {
   },
   home: {
     carousel: '.main-carousel',
+    featuresLinks: '.features a',
   },
   nav: {
     links: '.main-nav a',
