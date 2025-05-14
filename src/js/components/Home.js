@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { templates, select } from '../settings.js';
 
 class Home {

@@ -5,8 +5,6 @@ class CartProduct {
   constructor(menuProduct, element) {
     const thisCartProduct = this;
 
-    // TODO: remove this line at final version
-    // thisCartProduct.id = menuProduct.id;
     thisCartProduct.id = crypto.randomUUID();
     thisCartProduct.amount = menuProduct.amount;
     thisCartProduct.name = menuProduct.name;
