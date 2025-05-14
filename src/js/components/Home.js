@@ -23,7 +23,7 @@ class Home {
     new Flickity(elem, {
       cellAlign: 'left',
       contain: true,
-      autoPlay: 1500,
+      autoPlay: 3000,
       fullscreen: true,
     });
   }

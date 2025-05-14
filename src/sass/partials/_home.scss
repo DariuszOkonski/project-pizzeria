@@ -168,6 +168,11 @@
     opacity: 1;
     cursor: pointer;
     transition: all 0.2s ease;
+
+    i {
+      transform: scale(1.2);
+      transition: all 0.2s ease;
+    }
   }
 
   &__bg {
@@ -185,7 +190,8 @@
     font-size: 1.5rem;
 
     i {
-      margin: 0.2rem;
+      margin: 0.4rem;
+      transform: scale(0);
     }
 
     .fa-heart {
