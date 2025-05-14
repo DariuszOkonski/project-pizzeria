@@ -40,6 +40,7 @@ class Home {
 
   initPlugins() {
     const elem = document.querySelector('.main-carousel');
+    // eslint-disable-next-line no-undef
     new Flickity(elem, {
       cellAlign: 'left',
       contain: true,
