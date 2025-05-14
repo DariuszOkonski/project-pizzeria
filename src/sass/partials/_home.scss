@@ -133,3 +133,57 @@
 .carousel-cell {
   width: 80%;
 }
+
+.gallery {
+  width: 100%;
+  height: 400px;
+  margin-top: 0.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  &__img {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    border-radius: $radius;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__img:hover &__bg {
+    opacity: 0.5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  &__bg {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-dark;
+  }
+}
+
+.socials {
+  margin-top: 1rem;
+  a {
+    color: $color-main;
+  }
+}
